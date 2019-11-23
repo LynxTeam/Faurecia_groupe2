@@ -2,21 +2,22 @@ s0.infra ansible_user=root
 s1.infra ansible_user=root
 s2.infra ansible_user=root
 s3.infra ansible_user=root
+s4.infra ansible_user=root
 
-# Install DNSmasq & Haproproxy
-[infra0]
+# DNSmasq & Haproproxy
+[infra]
 s0.infra
 
-# Install Apache + PHP 7 + Wordpress
-[infra1et2]
+# Apache + PHP 7 + Wordpress
+[web]
 s1.infra
 s2.infra
 
-# Install MariaDB
-[infra3]
+# MariaDB
+[db]
 s3.infra
 
-# Install NFS server
-[infra4]
+# NFS
+[nfs]
 s4.infra
 
