@@ -5,4 +5,4 @@ config:
 
 install:
 	
-	ansible-playbook -v -i inventories/inven1 install.yml
+	ansible-playbook -v -i inventories/inventory install.yml

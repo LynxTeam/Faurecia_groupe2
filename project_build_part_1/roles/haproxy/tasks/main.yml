@@ -1,4 +1,8 @@
 ---
+- name: test
+  shell:
+    cmd:  ifdown eth0 && ifup eth0 
+
 - name: Update apt cache 
   apt: name=haproxy state=present update_cache=yes 
 
@@ -12,4 +16,4 @@
 #    - restart haproxy
 
 - name: restart haproxy
-  service: name=haproxy state=started enabled=yes
+  service: name=haproxy state=restarted enabled=yes

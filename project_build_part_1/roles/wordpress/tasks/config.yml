@@ -44,6 +44,17 @@
     - devsec
     - devsecops
 
+
+- name:
+  template: 
+    src: "{{ item.src }}" 
+    dest: "{{ item.dest }}" 
+  with_items:
+  - { src: wp-config.1.php, dest: /var/www/devops/wordpress }
+  - { src: wp-config.2.php, dest: /var/www/devsec/wordpress }
+  - { src: wp-config.3.php, dest: /var/www/devsecops/wordpress }
+
+
 - name: Restart apache
   become: yes
   service:
