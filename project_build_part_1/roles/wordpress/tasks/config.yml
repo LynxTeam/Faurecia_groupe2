@@ -1,6 +1,22 @@
 # roles/wordpress/tasks/config.yml
 # Configures Wordpress
 ---
+#- name: Create a NFS directory 
+#  file:
+#    path: /export/NFS
+#    state: directory
+#    mode: '0755'
+#
+#- name: mount the nfsshare in client side
+#  mount:
+#    fstype: nfs
+#    opts: defaults
+#    dump: 0
+#    passno: 0
+#    state: mounted
+#    src: s4.infra:/export/DATA 
+#    path: /var/www/
+#
 - name: Enable required apache modules
   apache2_module:
     name: "{{ item }}"
@@ -44,10 +60,19 @@
     - devsec
     - devsecops
 
+
+- name:
+  template: 
+    src: "{{ item.src }}" 
+    dest: "{{ item.dest }}" 
+  with_items:
+  - { src: wp-config.1.php, dest: /var/www/devops/wordpress }
+  - { src: wp-config.2.php, dest: /var/www/devsec/wordpress }
+  - { src: wp-config.3.php, dest: /var/www/devsecops/wordpress }
+
+
 - name: Restart apache
   become: yes
   service:
    name: apache2
    state: restarted
-
-

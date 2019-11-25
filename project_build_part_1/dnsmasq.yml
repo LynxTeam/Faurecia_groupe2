@@ -1,0 +1,9 @@
+---
+- name: "[HAPROXY, DNSmasq] - role to install haproxy and dnsmasq"
+  hosts: s0.infra  
+  become: yes    
+  roles:
+    - haproxy
+  tags:
+    - haproxy
+

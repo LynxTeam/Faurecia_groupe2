@@ -22,7 +22,19 @@
     - mariadb-client
     - nfs-common
     - cifs-utils
-
+    
+- name: mount the nfsshare in client side
+  become: yes
+  mount:
+    fstype: nfs
+    opts: defaults
+    dump: 0
+    passno: 0
+    fstype: ext4
+    state: mounted
+    src: s4.infra:/export/DATA 
+    path: /var/www/
+      
 - name: Download WordPress
   get_url: 
     url=https://wordpress.org/latest.tar.gz 

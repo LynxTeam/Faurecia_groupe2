@@ -3,10 +3,10 @@
   hosts: s0.infra  
   become: yes    
   roles:
-    - dnsmasq
+          #    - dnsmasq
     - haproxy
   tags:
-    - dnsmasq
+          #    - dnsmasq
     - haproxy
 
 - name: "[MariaDB] - role to install mariadb"
@@ -17,6 +17,14 @@
   tags:
     - mariadb
 
+- name: "[NFS server] - role to install NFS server"
+  hosts: s4.infra
+  become: yes    
+  roles:
+    - nfs
+  tags:
+    - nfs
+
 - name: "[Wordpress] - role to install Wordpress"
   hosts: 
     - s1.infra
@@ -26,11 +34,3 @@
     - wordpress
   tags:
     - wordpress
-
-- name: "[NFS server] - role to install NFS server"
-  hosts: s4.infra
-  become: yes    
-  roles:
-    - nfs
-  tags:
-    - nfs
